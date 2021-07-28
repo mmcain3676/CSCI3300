@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 public interface BillingRepository extends CrudRepository<Billing, Long> {
     
     @Modifying
-    @Query(value = "UPDATE billing SET appointment = ?1 WHERE billing_id = ?2", nativeQuery = true)
+    @Query(value = "UPDATE billing SET total_charge = ?1 WHERE billing_id = ?2", nativeQuery = true)
     @Transactional(rollbackFor = Exception.class)
-    int setCheckedInForAppointment(Long appointment, Longid);
+    int setBillingTotalCharge(Long billing, Long id);
     
     @Modifying
-    @Query(value = "UPDATE billing SET closed = ?1 WHERE billing_id = ?2", nativeQuery = true)
+    @Query(value = "UPDATE billing SET status = ?1 WHERE billing_id = ?2", nativeQuery = true)
     @Transactional(rollbackFor = Exception.class)
-    int setClosedForAppointment(Long appointment, Long id);
+    int setStatusOfBillingCharge(Long status, Long id);
     
 }
