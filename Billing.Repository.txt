@@ -1,0 +1,23 @@
+package com.example.application.repositories;
+
+
+import com.example.application.persistence.Billing;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
+ 
+public interface BillingRepository extends CrudRepository<Billing, Long> {
+    
+    @Modifying
+    @Query(value = "UPDATE billing SET appointment = ?1 WHERE billing_id = ?2", nativeQuery = true)
+    @Transactional(rollbackFor = Exception.class)
+    int setCheckedInForAppointment(Long appointment, Longid);
+    
+    @Modifying
+    @Query(value = "UPDATE billing SET closed = ?1 WHERE billing_id = ?2", nativeQuery = true)
+    @Transactional(rollbackFor = Exception.class)
+    int setClosedForAppointment(Long appointment, Long id);
+    
+}
