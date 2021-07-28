@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head> 
-    <title>User Login</title>
+    <title>Billing</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -18,10 +18,10 @@
                 "bPaginate": false,
                 "bFilter": true,
                 "bInfo": false,
-                "bAutoWidth": false,
+                "bAutoWidth": true,
                 "columnDefs": [
-                    {"visible" : false,
-                     "targets" : [0]}]
+                    {"visible" : true,
+                     "targets" : '_all'}]
             });
         });
     </script>
@@ -80,13 +80,13 @@
                             </thead>
                             <tbody>
                                 <tr th:each="billing : ${billing_list}">
-                                    <td th:text="${billing.getId()}">Billing ID</td>
-                                    <td th:text="${billing.getPatientObject().getLast_name()} + ', ' + ${billing.getPatientObject().getFirst_name}" >#</td>
-                                    <td th:text="${billing.getPatientObject().getLast_name()} + ', ' + ${billing.getPatientObject().getFirst_name}">Full Name</td>
+                                    <td th:text="${billing.getId()}">#</td>
+                                    <td th:text="${billing.getPatientObject().getLast_name()} + ', ' + ${billing.getPatientObject().getFirst_name}" >Full Name</td>
                                     <td th:text="${billing.getPhonenumber()}">xxx-xxx-xxxx</td>
                                     <td th:text="${billing.getModalityObject().getName()}">-</td>
                                     <td th:text="${billing.getDate()}">MM/DD/YYYY</td>
-                                    
+                                    <td>-</td>
+                                    <td>$</td>
                                     <td></td>
                                 </tr>
                             </tbody>
